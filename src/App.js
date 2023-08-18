@@ -1,22 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import {Filters} from './Components/Filters.js'
+import {Graph} from './Components/Graph.js'
 
 function App() {
+  const [parentData, setParentData] = useState([]);
+  const handleChildDataChange = (data) => {
+    setParentData(data); // Update parent's state with data from child
+    console.log("app me", typeof(data))
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Filters  handleChildDataChange={handleChildDataChange}/>
+        {parentData && <Graph dataa={parentData} />}
       </header>
     </div>
   );
